@@ -1,8 +1,8 @@
 # POSTWORK03
 # I.Procedimiento antes de conectarse al servidor
-a)Preparar la base de datos
-b)Explicar la base de datos:
--Es una base de datos descargada del Catalogo de sismos-Servicio Sismologico Nacional(SSN), UNAM-Mexico.
+- a)Preparar la base de datos
+- b)Explicar la base de datos:
+- -Es una base de datos descargada del Catalogo de sismos-Servicio Sismologico Nacional(SSN), UNAM-Mexico.
 -Contiene todos los sismos registrados desde 1900 al 13 de febrero del 2020, cuya magnitud es mayor o igual a 3 grados en escala richter.
 -Datos de la tabla:
 --id=identificador del sismo.
