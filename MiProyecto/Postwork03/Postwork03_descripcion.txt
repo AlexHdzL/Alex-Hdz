@@ -1,4 +1,39 @@
-Preguntas sobre la base de datos
+I.Procedimiento antes de conectarse al servidor
+a)Preparar la base de datos
+b)Explicar la base de datos:
+-Es una base de datos descargada del Catalogo de sismos-Servicio Sismologico Nacional(SSN), UNAM-Mexico.
+-Contiene todos los sismos registrados desde 1900 al 13 de febrero del 2020, cuya magnitud es mayor o igual a 3 grados en escala richter.
+-Datos de la tabla:
+--id=identificador del sismo.
+--Mag=magnitud en escala richter.
+--Prof=profundidad en kilometros.
+--Loc=la localizacion es solo una referencia a una localidad importante en cuanto a numero de habitantes y cercana al epicentro.
+--Edo=estado de la Republica Mexicana donde ocurrio el sismo.
+--Fecha=fecha de registro.
+--Estatus= Los registros con estatus verificado son los calculados y publicados de manera oportuna por al menos un analista de sismogramas. Los registros obtienen estatus revisado cuando se realiza un analisis, de ser posible, con mas y mejores datos para el calculo de parametros y cuyo tiempo de publicacion es variable.
+II.Procedimiento después de conectarse al servidor
+a)Conectarse al servidor
+>mycli -h ec2-34-219-168-150.us-west-2.compute.amazonaws.com -u root -p bedu0583 -P 3306 --local-infile true
+b)Crear base de datos
+>CREATE DATABASE AlejandroHdz;
+c)Usar base de datos
+>USE AlejandroHdz;
+d)Crear tabla
+>CREATE TABLE sismos (id int primary key, Mag decimal(2,1), Prof int, Loc varchar(100), Edo varchar(5), Fecha date, Estatus varchar(20));  
+e)Describir tabla
+>DESCRIBE sismos;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | <null>  |       |
+| Mag     | decimal(2,1) | YES  |     | <null>  |       |
+| Prof    | int(11)      | YES  |     | <null>  |       |
+| Loc     | varchar(100) | YES  |     | <null>  |       |
+| Edo     | varchar(5)   | YES  |     | <null>  |       |
+| Fecha   | date         | YES  |     | <null>  |       |
+| Estatus | varchar(20)  | YES  |     | <null>  |       |
++---------+--------------+------+-----+---------+-------+
+III.Preguntas sobre la base de datos
 1.¿Cuántos sismos hay registrados en esta base de datos?
 >select mag, count(mag) AS Magnitudes from sismos group by mag order by Mag asc;
 +----------+
