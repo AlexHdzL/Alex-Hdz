@@ -1,0 +1,264 @@
+POSTWORK04
+I.Procedimiento antes de conectarse al servidor
+a)Preparar la base de datos
+b)Explicar la base de datos:
+-Base de datos 1.
+--Es una base de datos descargada del Directorio Nacional de Unidades Economicas del INEGI.
+--Contiene informacion de las empresas que instalan paneles solares en Mexico:
+---Datos de la tabla:
+----id (int primary key)
+----Nombre de la Unidad Economica: empresa (varchar(100))
+----Codigo de la actividad economica: codigoINEGI (int)
+----Nombre de la actividad economica: actividad (varchar(100))
+----Numero de personas que laboran en la unidad: personal (varchar(50))
+----Estado de la Republica Mexicana: estado (varchar(20))
+----Localidad dentro del estado: localidad (varchar (100))
+-Base de datos 2.
+--Es una base de datos descargada de un trabajo de investigación "Potencial de los sistemas fotovoltaicos en Mexico" de Jorge Islas, Aaron Sanchez et. al.
+---Datos de la tabla:
+----Estado de la Republica Mexicana: estado (varchar(20) primary key)
+----Radiacion Solar Promedio Diario Anual (kWh/m2) Min: radMIN (DECIMAL(3,2))
+----Radiacion...Max: radMAX ((DECIMAL(3,2))
+----Radiacion...Media: radMEDIA (DECIMAL(3,2))
+----Temperatura Promedio Anual Min: tempMIN (DECIMAL(3,1))
+----Temperatura Promedio Anual Max: tempMAX (DECIMAL(3,1))
+----Temperatura Promedio Anual Med: tempMEDIA (DECIMAL(3,1))
+----Rendimiento de Tecnología Fotovoltaica(%) Silicio Monocristalino: monSI(DECIMAL(4,2))
+----Rendimiento... Silicio Policristalino: poliSI(DECIMAL (4,2))	
+----Rendimiento... Mono Silicio Amorfo: monoSIam(DECIMAL (4,2))
+----Rendimiento... Silicio Amorfo: SIa (DECIMAL (4,2))
+----Rendimiento... Cobre Indio Galio Selenio: CIGS (DECIMAL (4,2))
+----Rendimiento... Telurio DeCadmio: TDC (DECIMAL (4,2))
+II.Procedimiento después de conectarse al servidor
+a)Conectarse al servidor
+ >mycli -h ec2-34-219-168-150.us-west-2.compute.amazonaws.com -u root -p bedu0583 -P 3306 --local-infile true
+b)Usar base de datos
+ >USE AlejandroHdz;
+
+-Crear tabla 1
+ >CREATE TABLE empresas (id INT PRIMARY KEY, empresa VARCHAR(100), codigoINEGI INT, actividad VARCHAR(150), personal VARCHAR(50), estado VARCHAR(20), localidad VARCHAR(100));      
+-Describir tabla 1
+ >DESCRIBE empresas;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int(11)      | NO   | PRI | <null>  |       |
+| empresa     | varchar(100) | YES  |     | <null>  |       |
+| codigoINEGI | int(11)      | YES  |     | <null>  |       |
+| actividad   | varchar(150) | YES  |     | <null>  |       |
+| personal    | varchar(50)  | YES  |     | <null>  |       |
+| estado      | varchar(20)  | YES  |     | <null>  |       |
+| localidad   | varchar(100) | YES  |     | <null>  |       |
++-------------+--------------+------+-----+---------+-------+
+
+-Crear tabla 2
+ >CREATE TABLE radiacion (estado VARCHAR(20) PRIMARY KEY, radiacionMIN DECIMAL(3,2), radiacionMAX DECIMAL(3,2), radiacionMEDIA DECIMAL(3,2), temperaturaMIN DECIMAL(3,1), temperaturaMAX DECIMAL(3,1), temperaturaMEDIA DECIMAL(3,1), monSI DECIMAL(4,2), poliSI DECIMAL(4,2), monoSIam decimal(4,2), CIGS DECIMAL(4,2), TDC DECIMAL(4,2));
+-Describir tabla 2
+ >DESCRIBE radiacion;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| estado           | varchar(20)  | NO   | PRI | <null>  |       |
+| radiacionMIN     | decimal(3,2) | YES  |     | <null>  |       |
+| radiacionMAX     | decimal(3,2) | YES  |     | <null>  |       |
+| radiacionMEDIA   | decimal(3,2) | YES  |     | <null>  |       |
+| temperaturaMIN   | decimal(3,1) | YES  |     | <null>  |       |
+| temperaturaMAX   | decimal(3,1) | YES  |     | <null>  |       |
+| temperaturaMEDIA | decimal(3,1) | YES  |     | <null>  |       |
+| monSI            | decimal(4,2) | YES  |     | <null>  |       |
+| poliSI           | decimal(4,2) | YES  |     | <null>  |       |
+| monoSIam         | decimal(4,2) | YES  |     | <null>  |       |
+| CIGS             | decimal(4,2) | YES  |     | <null>  |       |
+| TDC              | decimal(4,2) | YES  |     | <null>  |       |
++------------------+--------------+------+-----+---------+-------+
+
+III.Preguntas sobre la base de datos
+
+1. ¿Cuántas empresas de esta industria hay por estado y cuáles son los estados que concentran más empresas?
+ >SELECT estado, COUNT(empresa) AS total_por_estado FROM empresas GROUP BY estado ORDER BY total_por_estado DESC LIMIT 5;
++------------------+------------------+
+| estado           | total_por_estado |
++------------------+------------------+
+| Ciudad de Mexico | 5                |
+| Jalisco          | 5                |
+| Nuevo Leon       | 4                |
+| Coahuila         | 4                |
+| Guanajuato       | 3                |
++------------------+------------------+
+
+2. ¿Cuál es la radiacion promedio anual medida en kWh/m2 de los estados de la República Mexicana?, ordenar alfabéticamente.
+> SELECT estadoRAD, radMEDIA AS radiacion_prom_estado FROM radiacion GROUP BY estadoRAD ASC;
++---------------------+-----------------------+
+| estadoRAD           | radiacion_prom_estado |
++---------------------+-----------------------+
+| Aguascalientes      | 5.88                  |
+| Baja California     | 5.30                  |
+| Baja California Sur | 5.86                  |
+| Campeche            | 5.84                  |
+| Chiapas             | 5.61                  |
+| Chihuahua           | 5.69                  |
+| Ciudad de Mexico    | 5.42                  |
+| Coahuila            | 5.26                  |
+| Colima              | 5.81                  |
+| Durango             | 5.71                  |
+| Estado de Mexico    | 5.57                  |
+| Guanajuato          | 5.44                  |
+| Guerrero            | 5.93                  |
+| Hidalgo             | 5.04                  |
+| Jalisco             | 5.89                  |
+| Michoacan           | 5.92                  |
+| Morelos             | 5.69                  |
+| Nayarit             | 5.87                  |
+| Nuevo Leon          | 5.32                  |
+| Oaxaca              | 5.75                  |
+| Puebla              | 5.25                  |
+| Queretaro           | 5.53                  |
+| Quintana Roo        | 5.36                  |
+| San Luis Potosi     | 5.48                  |
+| Sinaloa             | 6.01                  |
+| Sonora              | 5.50                  |
+| Tabasco             | 4.94                  |
+| Tamaulipas          | 5.08                  |
+| Tlaxcala            | 5.30                  |
+| Veracruz            | 5.72                  |
+| Yucatan             | 5.62                  |
+| Zacatecas           | 5.51                  |
++---------------------+-----------------------+
+
+3. ¿Cuál es la radiacion solar promedio que hay en el estado donde se ubica cada empresa?
+ >SELECT empresa, estado, radMEDIA FROM empresas LEFT JOIN radiacion ON radiacion.estadoRAD=empresas.estado ORDER BY radMEDIA DESC LIMIT 5;
++-----------------------------------------------------+-----------+----------+
+| empresa                                             | estado    | radMEDIA |
++-----------------------------------------------------+-----------+----------+
+| rb solar paneles solares                            | Michoacan | 5.92     |
+| venta de panel solar green                          | Michoacan | 5.92     |
+| energyclean                                         | Jalisco   | 5.89     |
+| advanced iep iighting de mexico                     | Jalisco   | 5.89     |
+| venta e instalacion de paneles solares solartronica | Jalisco   | 5.89     |
++-----------------------------------------------------+-----------+----------+
+
+4. Con base en lo anterior, ¿cuál es el top 5 de los estados donde debería haber la mayor cantidad de empresas debido al mayor potencial fotovoltaico?
+ >SELECT estadoRAD, radMEDIA, count(empresa) AS num_empresas FROM radiacion LEFT JOIN empresas ON empresas.estado=radiacion.estadoRAD GROUP BY radMEDIA DESC LIMIT 5;
++----------------+----------+--------------+
+| estadoRAD      | radMEDIA | num_empresas |
++----------------+----------+--------------+
+| Sinaloa        | 6.01     | 0            |
+| Guerrero       | 5.93     | 0            |
+| Michoacan      | 5.92     | 2            |
+| Jalisco        | 5.89     | 5            |
+| Aguascalientes | 5.88     | 0            |
++----------------+----------+--------------+
+
+5.- Dadas las condiciones del potencial fotovoltaico del estado donde se ubican, ¿cuáles son las 5 empresas que deberían considerar cambiar de estado?
+ >SELECT empresa, estado, radMEDIA FROM empresas LEFT JOIN radiacion ON radiacion.estadoRAD=empresas.estado ORDER BY radMEDIA ASC LIMIT 5;
++------------------------------------------------+---------+----------+
+| empresa                                        | estado  | radMEDIA |
++------------------------------------------------+---------+----------+
+| energy center energia sustentable              | Tabasco | 4.94     |
+| disolar mex energia renovables                 | Tabasco | 4.94     |
+| ecohelios                                      | Tabasco | 4.94     |
+| venta de paneles solares solar energy          | Hidalgo | 5.04     |
+| servicio yventa de paneles solares tecam solar | Puebla  | 5.25     |
++------------------------------------------------+---------+----------+
+
+6.- ¿En qué estados de la República se desempeña mejor qué teconología fotovoltaica?
+ >SELECT estadoRAD, monSI FROM radiacion ORDER BY monSI DESC LIMIT 5;
++------------------+-------+
+| estadoRAD        | monSI |
++------------------+-------+
+| Tamaulipas       | 89.55 |
+| Estado de Mexico | 88.98 |
+| Tlaxcala         | 88.42 |
+| Ciudad de Mexico | 87.96 |
+| Puebla           | 87.61 |
++------------------+-------+
+ >SELECT estadoRAD, poliSI FROM radiacion ORDER BY poliSI DESC LIMIT 5;
++------------------+--------+
+| estadoRAD        | poliSI |
++------------------+--------+
+| Tamaulipas       | 91.00  |
+| Estado de Mexico | 90.56  |
+| Tlaxcala         | 90.12  |
+| Ciudad de Mexico | 89.76  |
+| Puebla           | 89.48  |
++------------------+--------+
+ >SELECT estadoRAD, monoSIam FROM radiacion ORDER BY monoSIam DESC LIMIT 5;
++------------------+----------+
+| estadoRAD        | monoSIam |
++------------------+----------+
+| Tamaulipas       | 95.08    |
+| Estado de Mexico | 94.82    |
+| Tlaxcala         | 94.55    |
+| Ciudad de Mexico | 94.34    |
+| Puebla           | 94.17    |
++------------------+----------+
+ >SELECT estadoRAD, SIa FROM radiacion ORDER BY SIa DESC LIMIT 5;
++------------------+-------+
+| estadoRAD        | SIa   |
++------------------+-------+
+| Tamaulipas       | 89.65 |
+| Estado de Mexico | 89.14 |
+| Tlaxcala         | 88.64 |
+| Ciudad de Mexico | 88.22 |
+| Puebla           | 87.90 |
++------------------+-------+
+ >SELECT estadoRAD, CIGS FROM radiacion ORDER BY CIGS DESC LIMIT 5;
++------------------+-------+
+| estadoRAD        | CIGS  |
++------------------+-------+
+| Tamaulipas       | 94.88 |
+| Estado de Mexico | 94.60 |
+| Tlaxcala         | 94.33 |
+| Ciudad de Mexico | 94.10 |
+| Puebla           | 93.93 |
++------------------+-------+
+
+7. ¿Cuál es la teconología con mejor rendimiento en %, y en qué estados está ese mejor desempeño?
+ >SELECT estadoRAD, monoSIam FROM radiacion ORDER BY monoSIam DESC LIMIT 5;
++------------------+----------+
+| estadoRAD        | monoSIam |
++------------------+----------+
+| Tamaulipas       | 95.08    |
+| Estado de Mexico | 94.82    |
+| Tlaxcala         | 94.55    |
+| Ciudad de Mexico | 94.34    |
+| Puebla           | 94.17    |
++------------------+----------+
+
+8. ¿Qué empresas están mejor ubicadas y qué teconología deberían utilizar para obtener mayor rendimiento? y ¿por qué?
+El top de la radiación media por estado es de 5.88 a 6.01 kWh/m2
+El top de los mejores rendimientos de las tecnologías fotovoltaicas es de 94.17 a 95.08 % de rendimiento
+La teconolgía con el mayor porcentaje de aprovechamiento fotovoltaico es aquella que usa: Mono Silicio Amorfo
+El top 3 de los mejores estados para con mejor potencial fotovoltaico son: Sinaloa, Guerrero y Michoacán respectivamente.
+
+CONCLUSION
+>SELECT empresa, estado, radMEDIA, `monoSIam`, `CIGS` FROM empresas LEFT JOIN radiacion ON radiacion.estadoRAD=empresas.estado ORDER BY `radMEDIA` DESC LIMIT 20;
++-----------------------------------------------------------+------------------+----------+----------+-------+
+| empresa                                                   | estado           | radMEDIA | monoSIam | CIGS  |
++-----------------------------------------------------------+------------------+----------+----------+-------+
+| venta de panel solar green                                | Michoacan        | 5.92     | 93.59    | 93.33 |
+| rb solar paneles solares                                  | Michoacan        | 5.92     | 93.59    | 93.33 |
+| energyclean                                               | Jalisco          | 5.89     | 93.18    | 92.90 |
+| proyecto terra renta paneles solares                      | Jalisco          | 5.89     | 93.18    | 92.90 |
+| venta e instalacion de paneles solares solartronica       | Jalisco          | 5.89     | 93.18    | 92.90 |
+| generacion de electricidad a partir de energia solar      | Jalisco          | 5.89     | 93.18    | 92.90 |
+| advanced iep iighting de mexico                           | Jalisco          | 5.89     | 93.18    | 92.90 |
+| venta de paneles solares estacion solar                   | Nayarit          | 5.87     | 92.20    | 91.88 |
+| paneles solares solar house                               | Nayarit          | 5.87     | 92.20    | 91.88 |
+| arboledas energia solar paneles calentadores y accesorios | Colima           | 5.81     | 92.42    | 92.10 |
+| panel solar sin nombre                                    | Oaxaca           | 5.75     | 92.85    | 92.55 |
+| venta de paneles solares energia solar                    | Oaxaca           | 5.75     | 92.85    | 92.55 |
+| edf                                                       | Oaxaca           | 5.75     | 92.85    | 92.55 |
+| itzaes tecnologias energeticas                            | Veracruz         | 5.72     | 93.40    | 93.13 |
+| tai durango uno s. a. p. i. de c. v.                      | Durango          | 5.71     | 93.76    | 93.50 |
+| electro tableros de control                               | Durango          | 5.71     | 93.76    | 93.50 |
+| tienda de paneles solares solar 7                         | Morelos          | 5.69     | 92.94    | 92.65 |
+| grupo protesu                                             | Yucatan          | 5.62     | 92.37    | 92.05 |
+| paneles solares java solar                                | Estado de Mexico | 5.57     | 94.82    | 94.60 |
+| instalacion de paneles solares                            | Queretaro        | 5.53     | 93.81    | 93.55 |
++-----------------------------------------------------------+------------------+----------+----------+-------+
+Después de hacer varios análisis que involucran a las 6 tecnologías fotovoltaicas con la respectiva ubicación estatal de sus mejores rendimientos, los datos indican que:
+  1.Éstas son las empresas mejor posicionadas en términos del potencial fotovoltaico de su ubicación y del rendimiento de la tecnología en la zona.
+  2.Si bien la tecnología CIGS no está dentro del top de los mejores rendimientos, sí son el mejor rendimiento dentro de los estados con mejor radiación media.
+  3.La tecnología con mejor rendimiento bajo las condiciones propicias es Mono Silicio Amorfo, pero no muestra una ventaja significativa con respecto al CIGS de la ubicación de estas empresas.
+  4.La empresa "paneles solares java solar" es la mejor posicionada en términos de la relación Radiación Media Diaria Anual / Rendimiento de la Tecnología Fotovoltaica.
