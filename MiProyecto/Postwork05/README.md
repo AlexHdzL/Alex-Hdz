@@ -8,7 +8,7 @@
 
 ```
 Base de datos: AlejandroHdz
-Colección:     US_borders
+Colección:     fronteras_EUA
 ```
 
 #### (2) Estructura del archivo CSV
