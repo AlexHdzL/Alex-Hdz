@@ -32,9 +32,9 @@ id,Port name, State,Port Code,Border,Date,Measure,Value
 {Measure:"Train Passengers"}
 ```
 
-2. ¿Por cuál frontera hubo más accesos por la de México-Estados Unidos o por la de Estados Unidos-Canadá?
+2. ¿Por cuál frontera hubo más accesos por la de México-Estados Unidos o por la de Estados Unidos-Canadá en el periodo 2018-2019?
 
-*Solución: Por las fronteras con Canadá*
+*Solución: Por las fronteras con Canadá con 9006 ingresos de un total de 11,898*
 
 ```json
 // SORT
@@ -48,7 +48,7 @@ id,Port name, State,Port Code,Border,Date,Measure,Value
 
 3. ¿Cuántos vehículos personales ingresaron por el Estado de Texas?
 
-1*Solución: 165*
+*Solución: 165*
 
 ```json
 // PROJECTION
