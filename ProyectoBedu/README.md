@@ -1,14 +1,14 @@
 # Proyecto Bedu 🧱
 
-_La influencia política, económica y cultural del español y los hispanohablantes en Estados Unidos_
+**La influencia política, económica y cultural del español y los hispanohablantes en Estados Unidos**
 
 ## ¿Qué necesidad o problema hay en el mercado? 🚀
 
 _En esta era multipolar donde los actores del escenario internacional ya no sólo son los países sino una enorme cantidad de entes como las organizaciones internacionales, la sociedad civil o los individuos, el panhispanismo se ha identificado recientemente como un nuevo actor global._
 
-_El hispanismo se entiende como la afinidad que existe entre los países con hablantes de la lengua española y a los numerosos elementos de naturaleza cultural histórica, geopolítica y cooperativa que existe entre estas naciones, ¿de dónde surge y qué importancia tiene?_
+_El hispanismo se entiende como la afinidad que existe entre los países con hablantes de la lengua española y a los numerosos elementos de naturaleza cultural histórica, geopolítica y cooperativa que existe entre estas naciones, pero ¿de dónde surge y qué importancia tiene?_
 
-* _El panhispanismo, es la herencia de uno de los imperios más grandes de la historia, tanto por la cantidad de territorio que ocupó, como por el poder político y económico que tuvo y, sobre todo, por el tiempo que duró (más de tres siglos).
+* _El panhispanismo, es la herencia de uno de los imperios más grandes de la historia, tanto por la cantidad de territorio que ocupó, como por el poder político y económico que tuvo y, sobre todo, por el tiempo que duró (más de tres siglos)._
 * _Constituye, junto con el portugués (paniberismo), el primer espacio lingüístico del mundo._
 * _Este espacio representa una quinta parte de la superficie del planeta._
 * _El panhispanismo es un conjunto multinacional que agrupa a más de 800 millones de personas._
