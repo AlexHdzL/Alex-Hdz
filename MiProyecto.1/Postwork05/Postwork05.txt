@@ -1,0 +1,1 @@
+En Github crear un archivo README: 1.Nombre de la Base 2.Poner preguntas con la consulta en json y su respuesta, 3.Subir el archivo en .csv
