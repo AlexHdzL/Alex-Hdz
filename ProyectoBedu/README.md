@@ -30,11 +30,12 @@ _Analizar el nivel de influencia de los hispanohablantes en Estados Unidos a tra
 
 ## ¿Cómo lo voy a hacer? 🛠️
 
-* 1.Revisar los censos recientes de los Estados Unidos a nivel nacional y por estados.
-* 2.Ver cuál es la población de habla hispana que radica en los Estados Unidos y seleccionar los 5 estados con la mayor población.
-* 3.Adicionalmente precisar cuáles son las 5 ciudades con mayor cantidad de hispanohablantes.
-* 4.Correlacionar lo datos de esta población con los datos que den un indicador de su influencia en términos de participación política (votantes), comercial-tributaria (consumidores-contribuyentes) y laboral (trabajadores).
-* 5.Construir un indicador de influencia que tiene el habla hispana en Estados Unidos.
+* 1.Revisar los censos recientes de los Estados Unidos (2016 y 2017) a nivel nacional y por estados.
+* 2.Ver cuál es **el porcentaje** de la población de habla hispana que radica en los Estados Unidos y seleccionar los 5 estados con la mayor población.
+* 3.Conocer el **número** de hispanohablantes que hablan español en cada estado.
+* 4.Adicionalmente precisar cuáles son las 5 ciudades con **mayor cantidad de hispanohablantes**.
+* 5.Correlacionar lo datos de esta población con los datos que den un **indicador** de su influencia en términos de **participación política** (votantes), **comercial-tributaria** (consumidores-contribuyentes) y **laboral** (trabajadores).
+* 6.Construir un indicador de influencia que tiene el habla hispana en Estados Unidos.
 
 ## ¿Para qué lo voy a hacer? 📢🧭
 
