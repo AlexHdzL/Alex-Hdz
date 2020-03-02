@@ -50,6 +50,7 @@ Yo🤔
 ## ¿Cuáles son sus prioridades?
 
 ## Ejemplo de consulta
+```
 AlejandroHdz> select agecal2017,totalcal2017,totalnational2017 from censuscaliforn
               ia2017 left join censustotal2017 on censuscalifornia2017.agecal2017=
               censustotal2017.agenational2017;
@@ -76,3 +77,4 @@ AlejandroHdz> select agecal2017,totalcal2017,totalnational2017 from censuscalifo
 | Total             | 39536653     | 325719178         |
 | Under 5 years     | 2471513      | 19938860          |
 +-------------------+--------------+-------------------+
+```
