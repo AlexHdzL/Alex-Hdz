@@ -48,3 +48,33 @@ Yo🤔
 ## ¿Cómo es?
 
 ## ¿Cuáles son sus prioridades?
+
+## Ejemplo de consulta
+```
+AlejandroHdz> select agecal2017,totalcal2017,totalnational2017 from censuscaliforn
+              ia2017 left join censustotal2017 on censuscalifornia2017.agecal2017=
+              censustotal2017.agenational2017;
++-------------------+--------------+-------------------+
+| agecal2017        | totalcal2017 | totalnational2017 |
++-------------------+--------------+-------------------+
+| 05 to 9 years     | 2514352      | 20304238          |
+| 10 to 14 years    | 2542780      | 20778454          |
+| 15 to 19 years    | 2562668      | 21131660          |
+| 20 to 24 years    | 2767775      | 22118635          |
+| 25 to 29 years    | 3130234      | 23370460          |
+| 30 to 34 years    | 2893545      | 21972212          |
+| 35 to 39 years    | 2713487      | 21231997          |
+| 40 to 44 years    | 2509575      | 19643373          |
+| 45 to 49 years    | 2607438      | 20973858          |
+| 50 to 54 years    | 2555250      | 21401094          |
+| 55 to 59 years    | 2528756      | 22007956          |
+| 60 to 64 years    | 2233922      | 19987702          |
+| 65 to 69 years    | 1825565      | 16836381          |
+| 70 to 74 years    | 1370235      | 12847065          |
+| 75 to 79 years    | 929630       | 8741261           |
+| 80 to 84 years    | 647135       | 5965290           |
+| 85 years and over | 732793       | 6468682           |
+| Total             | 39536653     | 325719178         |
+| Under 5 years     | 2471513      | 19938860          |
++-------------------+--------------+-------------------+
+```
