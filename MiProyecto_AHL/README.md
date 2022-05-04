@@ -1,8 +1,10 @@
 # Proyecto Análisis de la varianza del Tipo de Cambio USD/MXN durante las crisis en México
 
 Analizar la variación del tipo de cambio USD-MXN durante los periodos de crisis que ha tenido México desde diciembre de 1992 hasta mayo 2020.
-Se hará a partir de esta fecha ya que es el año en que inicia el régimen cambiario actual que se denomina "de libre flotación", es decir, el valor de la moneda depende de la oferta y la demanda en el mercado cambiario.
-Este régimen se implementó el 22 de diciembre de 1993. Se utilizará el registro de datos disponibles en el portal del Banco de México y del portal Investing.com
+Se hará a partir de esta fecha, ya que es el año en que inicia el régimen cambiario actual que se denomina "de libre flotación", es decir, el valor de la moneda depende de la oferta y la demanda en el mercado cambiario.
+Este régimen se implementó el 22 de diciembre de 1993.
+Se utilizará el registro de datos disponibles en el portal del Banco de México y del portal Investing.com
+En análisis se hará a través del lenguaje R con la herramienta RStudio.
 
 ## Procedimiento
 ```
