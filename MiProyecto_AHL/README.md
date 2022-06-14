@@ -4,7 +4,7 @@ Analizar la variación del tipo de cambio USD-MXN durante los periodos de crisis
 Se hará a partir de esta fecha, ya que es el año en que inicia el régimen cambiario actual que se denomina "de libre flotación", es decir, el valor de la moneda depende de la oferta y la demanda en el mercado cambiario.
 Este régimen se implementó el 22 de diciembre de 1993.
 Se utilizará el registro de datos disponibles en el portal del Banco de México y del portal Investing.com
-En análisis se hará a través del lenguaje R con la herramienta RStudio.
+El análisis se hará a través del lenguaje R con la herramienta RStudio.
 
 ## Procedimiento
 ```
